@@ -4,17 +4,15 @@ import Logo from "../components/Logo";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 
+
 const AboutUs = () => {
 	const navigate = useNavigate();
-    const goToIntroPage = () => {
-        navigate("/");
-    }
+	const goToIntroPage = () => {
+		navigate("/");
+	};
 	return (
 		<>
-			<Logo
-				onClick={goToIntroPage}
-				style={{ cursor: "pointer" }}
-			/>
+			<Logo onClick={goToIntroPage} style={{ cursor: "pointer" }} />
 			<div className="aboutUs-container">
 				<h1 className="aboutUs-title">About Us</h1>
 				<p className="aboutUs-text">
@@ -34,6 +32,30 @@ const AboutUs = () => {
 				<h2 className="aboutUs-subtitle">Join Us Today!</h2>
 				<p className="aboutUs-text">Become a part of the PawPaw community and experience the convenience of having all your pet-related needs in one app. Together, let's make the world a better place for our beloved pets!</p>
 			</div>
+			<div className="aboutUs-subtitle">Meet Our Team</div>
+			<div className="team-container">
+				<div className="team-member">
+					<img src="images/eu.png" alt="Ion Vornicescu" className="team-photo" />
+					<h3>Ion Vornicescu</h3>
+					<p>Frontend Developer</p>
+				</div>
+				<div className="team-member">
+					<img src="images/Ion.png" alt="Ion Cobzari" className="team-photo" />
+					<h3>Ion Cobzari</h3>
+					<p>Backend Developer</p>
+				</div>
+				<div className="team-member">
+					<img src="images/Cosmin.png" alt="Usurelu Cosmin" className="team-photo" />
+					<h3>Usurelu Cosmin</h3>
+					<p>Mapbox API Expert</p>
+				</div>
+				<div className="team-member">
+					<img src="images/Sanda.png" alt="Crudu Alexandra" className="team-photo" />
+					<h3>Crudu Alexandra</h3>
+					<p>Figma Designer</p>
+				</div>
+			</div>
+
 			<Footer />
 		</>
 	);
