@@ -12,6 +12,7 @@ import "../styles/NotificationIcon.css";
 import NotificationIcon from "../components/NotificationIcon";
 import Header from "../components/Header";
 import "../styles/SettingsModal.css";
+
 const MainPage = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [allPets, setAllPets] = useState([]);

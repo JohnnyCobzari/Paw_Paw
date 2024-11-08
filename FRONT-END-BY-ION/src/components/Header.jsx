@@ -76,12 +76,22 @@ function Header({ setIsOpen, isOpen, showMatch }) {
 			setShowSettingsModal(false); // Close settings if notifications is opened
 		}
 	};
+
+	const NavigateHome = () => {
+		if (showMatch) {
+			navigate("/HomePage");
+		} else {
+			navigate("/ServiceHome");
+		}
+	};
 	return (
 		<header>
 			<button className="toggle-btn" onClick={toggleSidebar}>
 				<CgMenu size={28} />
 			</button>
-			<Logo width="192px" />
+			<div onClick={NavigateHome} style={{cursor: 'pointer'}}>
+				<Logo width="192px" />
+			</div>
 			<div className={styles.HeaderPets}>
 				<img src={process.env.PUBLIC_URL + "/images/HeaderPets.png"} alt="Pets" />
 			</div>

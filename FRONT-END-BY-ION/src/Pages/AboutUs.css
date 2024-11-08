@@ -1,0 +1,170 @@
+/* AboutUs.css - Stiluri combinate */
+
+/* Container Styles */
+.aboutUs-container {
+    max-width: 900px;
+    margin: 45px auto;
+    padding: 20px;
+    background-color: #fff7dd; /* Fundal deschis pentru contrast */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Title Styles */
+  .aboutUs-title {
+    font-size: 2.5rem;
+    color: #6b5e49; /* Culoare preluată din codul existent */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Subtitle Styles */
+  .aboutUs-subtitle {
+    font-size: 1.8rem;
+    color: #857966; /* Nuante diferite pentru textul subtitlu */
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  /* Text Styles */
+  .aboutUs-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #6b5e49; /* Culoare text preluată */
+    margin-bottom: 20px;
+  }
+  
+  /* List Styles */
+  .aboutUs-list {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .aboutUs-list li {
+    margin-bottom: 10px;
+    color: #857966; /* Culoare pentru lista */
+  }
+  
+  /* Strong Text Styles */
+  strong {
+    color: #f08080;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .aboutUs-container {
+      padding: 15px;
+      margin: 45px auto;
+    }
+  
+    .aboutUs-title {
+      font-size: 2rem;
+    }
+  
+    .aboutUs-subtitle {
+      font-size: 1.5rem;
+    }
+  
+    .aboutUs-text {
+      font-size: 0.95rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .aboutUs-container {
+      padding: 10px;
+      margin: 45px auto;
+    }
+  
+    .aboutUs-title {
+      font-size: 1.8rem;
+    }
+  
+    .aboutUs-subtitle {
+      font-size: 1.3rem;
+    }
+  
+    .aboutUs-text {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Elemente de Hover pentru iconițe */
+  .notification-icon {
+    cursor: pointer;
+    color: #007bff;
+    transition: color 0.3s ease;
+  }
+  
+  .notification-icon:hover {
+    color: #4a90e2;
+  }
+  
+  /* Buton de schimbare conținut */
+  #ChangeMapContentButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 106px;
+    height: 32px;
+    z-index: 10;
+    background-color: transparent;
+    border: 1px solid #6b5e49;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #ChangeMapContentButton:hover {
+    background-color: #857966;
+    color: white;
+  }
+  
+  /* Efect Hover pentru adăugare locație */
+  .AddLocalHover:hover .tooltip {
+    transform: translateY(1px) translateX(-124%);
+    opacity: 1;
+    background-color: #857966; /* Culoare ajustată pentru tema generală */
+  }
+  
+  /* Focus input */
+  input:focus {
+    border-color: #6b5e49;
+    outline: none;
+  }
+  
+  /* Listă în popup-ul de notificări */
+  .notification-popup li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+    color: #6b5e49;
+  }
+  
+  /* Stiluri pentru text în general */
+  .tooltip {
+    background-color: #6b5e49;
+    color: white;
+    padding: 5px;
+    border-radius: 4px;
+  }
+  
+  /* Markeri pe hartă */
+  .marker-icon {
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    border-radius: 50%;
+    border: 2px solid #857966; /* Adăugat un border care se potrivește cu tema */
+    transition: transform 0.2s ease;
+  }
+  
+  .marker-icon:hover {
+    transform: scale(1.1);
+  }
+  

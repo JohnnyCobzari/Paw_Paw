@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./AddLocalForm.css";
+import "../ServiceComponentsStyles/AddLocalForm.css";
 import { FiX } from "react-icons/fi";
 import ImageUpload from "../../components/DragAndDrop";
 import GeolocationComponent from "../../components/Geolocation";

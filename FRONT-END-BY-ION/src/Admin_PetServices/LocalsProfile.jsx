@@ -1,19 +1,19 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import "../Admin_PetServices/ServicesComponets/LocalProfile.css";
+import "../Admin_PetServices/ServiceComponentsStyles/LocalProfile.css";
 import ImageCarousel from "./ServicesComponets/ImageCarusel";
 import StarRating from "./ServicesComponets/StarRating";
 import { PiMapPinAreaBold } from "react-icons/pi";
 import ReviewsBox from "./ServicesComponets/ReveiwsBox";
 import LoadingAnimation from "../components/LoadingAnimation";
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 function LocalProfile() {
 	const [localInfo, setLocals] = useState({}); // Initialize as an empty object
 	const [showReviews, setShowReviews] = useState(false);
-    const userLocals = JSON.parse(localStorage.getItem('locals')) || [];
+	const userLocals = JSON.parse(localStorage.getItem("locals")) || [];
+	const [reviews, setReviews] = useState([]);
 
 	useEffect(() => {
 		const currentUrl = window.location.href; // Get the full URL
@@ -31,22 +31,48 @@ function LocalProfile() {
 			})
 			.then((response) => {
 				setLocals(response.data); // Set the fetched local info to state
-				console.log(response.data); // Log the response data
 			})
 			.catch((error) => console.error("Error fetching local info:", error));
-	}, []); // Add an empty dependency array to only run once
+	}, []);
 
-    console.log("debug", userLocals)
+	useEffect(() => {
+		const currentUrl = window.location.href; // Get the full URL
+		const localId = currentUrl.split("/").pop();
+
+		axios
+			.get(`http://localhost:3002/local/all-reviews/${localId}`, {
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+					"Content-Type": "application/json",
+				},
+			})
+			.then((response) => {
+				setReviews(response.data);
+				console.log(response.data);
+			})
+			.catch((error) => console.error("Error fetching notifications:", error));
+	}, []);
+
 	const isLocalInUserLocals = userLocals.some((local) => local._id === localInfo._id);
 
+	const calculateAverageRating = (reviews) => {
+		if (reviews.length === 0) return 0; // Return 0 if there are no reviews
 
- 	if (!localInfo || Object.keys(localInfo).length === 0) {
+		const totalRating = reviews.reduce((accumulator, review) => accumulator + review.rating, 0);
+		const averageRating = totalRating / reviews.length; // Calculate the average rating
+
+		return averageRating; // Return the average rating without rounding
+	};
+
+	if (!localInfo || Object.keys(localInfo).length === 0) {
 		return (
 			<div>
 				<LoadingAnimation />
 			</div>
 		);
 	}
+
+	const averageRating = calculateAverageRating(reviews);
 
 	return (
 		<>
@@ -67,7 +93,10 @@ function LocalProfile() {
 							<p className="address">{localInfo.address}</p>
 							<PiMapPinAreaBold />
 						</div>
-						<StarRating rating={localInfo.rating || 0} />
+						<div className="AddressContainer">
+							<p className="TypeLocalWriting">Rating:</p>
+							<StarRating rating={averageRating} />
+						</div>
 						<div className="LocalButtonsBox">
 							<button className="LocalInformationButton" onClick={() => setShowReviews(false)}>
 								Information
@@ -80,7 +109,7 @@ function LocalProfile() {
 					</div>
 				</>
 			) : (
-				<ReviewsBox setShowReviews={setShowReviews} isLocalInUserLocals={isLocalInUserLocals} />
+				<ReviewsBox setShowReviews={setShowReviews} isLocalInUserLocals={isLocalInUserLocals} reviews={reviews} />
 			)}
 			<Footer />
 		</>

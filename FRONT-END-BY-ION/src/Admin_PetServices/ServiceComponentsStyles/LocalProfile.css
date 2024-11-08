@@ -252,7 +252,6 @@ body {
 	align-items: center;
 	margin-top: 36px;
 	border-top: 1px solid var(--midColor);
-	background-color: aqua;
 }
 
 .LocalButtonsBox div {
@@ -422,4 +421,8 @@ body {
   .curtainContent button:hover {
     background-color: #218838;
   }
+  
+
+  /*For the stars =======================================*/
+
   

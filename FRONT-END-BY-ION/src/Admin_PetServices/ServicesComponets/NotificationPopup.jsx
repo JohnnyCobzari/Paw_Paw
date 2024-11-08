@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IoMdSend } from "react-icons/io"; // Import the icon from react-icons
-import "./NotificationPopup.css"; // Import the CSS file
+import "../ServiceComponentsStyles/NotificationPopup.css"; // Import the CSS file
 import axios from 'axios';
 
 const NotificationPopup = ({ isOpen, onClose, notificationMessage }) => {

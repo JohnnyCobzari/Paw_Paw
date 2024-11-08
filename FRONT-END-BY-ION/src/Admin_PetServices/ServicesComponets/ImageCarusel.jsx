@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "./LocalProfile.css"
+import "../ServiceComponentsStyles/LocalProfile.css"
 
 const ImageCarousel = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);

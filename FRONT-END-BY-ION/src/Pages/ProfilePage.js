@@ -3,8 +3,8 @@ import { FaDog, FaSyringe, FaPhone, FaClinicMedical, FaDollarSign, FaVenusMars, 
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/SideBar";
-import Logo from "../components/Logo";
 import "../styles/ProfilePage.css";
+import Header from "../components/Header";
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Loading from "../components/LoadingAnimation";
@@ -89,9 +89,7 @@ function ProfilePage() {
   return (
     <>
       <Sidebar/>
-      <div onClick={() => navigate('/Homepage')} style={{ cursor: "pointer" }}>
-        <Logo />
-      </div>
+      <Header showMatch={true} />
       <div className="Profile-info">
         <div className="Profile-ImageContainer">
           <img src={petProfile.image} alt="Pet"></img>

@@ -1,30 +1,25 @@
 import React from 'react';
-import './StarRating.css'; // Ensure you have the CSS styles
 
 const StarRating = ({ rating }) => {
-  const totalStars = 5;
+  const fullStar = process.env.PUBLIC_URL + '/Admin_services_foto/FullStar.png';
+  const emptyStar = process.env.PUBLIC_URL + '/Admin_services_foto/EmptyStar.png';
+  const halfStar = process.env.PUBLIC_URL + '/Admin_services_foto/HalfStar.png';
 
-  const getStarWidth = (index) => {
-    if (index < Math.floor(rating)) {
-      return 100; // Fully filled
-    } else if (index === Math.floor(rating) && rating % 1 !== 0) {
-      return (rating % 1) * 100; // Partially filled
+  const stars = [];
+
+  for (let i = 1; i <= 5; i++) {
+    if (i <= rating) {
+      stars.push(<img key={i} src={fullStar} alt="Full star" style={{ width: '20px' }} />);
+    } else if (i - rating < 1 && i - rating > 0) { // For half stars
+      stars.push(<img key={i} src={halfStar} alt="Half star" style={{ width: '20px' }} />);
+    } else {
+      stars.push(<img key={i} src={emptyStar} alt="Empty star" style={{ width: '20px' }} />);
     }
-    return 0; // Not filled
-  };
+  }
 
   return (
-    <div className="star-rating">
-      {[...Array(totalStars)].map((_, index) => (
-        <div className="star-container" key={index}>
-          <span className="star">★</span>
-          <div
-            className="star-fill"
-            style={{ width: `${getStarWidth(index)}%` }}
-          />
-        </div>
-      ))}
-      <div className="rating-value">{rating.toFixed(1)} / {totalStars}</div>
+    <div style={{ display: 'flex', gap: '4px' }}>
+      {stars}
     </div>
   );
 };

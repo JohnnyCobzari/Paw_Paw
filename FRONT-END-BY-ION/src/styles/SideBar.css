@@ -68,6 +68,10 @@
 	transition: width 0.5s ease-in-out; /* Smooth size adjustment */
 }
 
+.sidebar .expanded .ImageBoxSidebar{
+
+}
+
 /*pentru imaginea de la butonul de add */
 .iconUserProfileContainer img {
 	width: 48px;
@@ -117,24 +121,42 @@
 	color: var(--lowColor);
 	display: flex;
 	justify-content: center;
+
 	align-items: center;
 	cursor: pointer;
 	transition:
 		width 0s ease-in-out,
 		font-size 0s ease-in-out; /* Smooth size and font change */
-	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for text boxes */
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1); /* Light shadow for text boxes */
     margin-top: 2px;
+}
+
+.sidebar.expanded .textInSideBar{
+    display: none;
 }
 
 .sidebar.expanded .iconUserProfileContainer {
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+    width: 90%;
+    border: 1px solid #82745e;
+    margin: 10px auto;
+    border-radius: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for text boxes */
+
 }
 
 .sidebar.expanded .ImageBoxSidebar {
-	width: 60px;
+	width: 95%;
 	height: 60px;
+    background-color: transparent;
+    justify-content: flex-start;
+    height: 64px;
+}
+
+.sidebar.expanded .textInSideBarName{
+    display: block;
 }
 
 .sidebar.expanded .textInSideBar {
@@ -294,11 +316,6 @@
 	}
 
 	.sidebar.expanded .textInSideBar {
-		color: var(--lowColor);
-	}
-
-	.sidebar.expanded .ImageBoxSidebar {
-		background-color: var(--hoverColor);
 		color: var(--lowColor);
 	}
 

@@ -122,42 +122,40 @@ const Mapbox = ({ pets }) => {
 	};
 
 	useEffect(() => {
-        const fetchLocals = async () => {
-          setLoading(true);
-          try {
-            const data = await LocalService.getAllLocals();
-            if (Array.isArray(data)) {
-              console.log("Locals fetched successfully: ", data);
-              
-              // Transform locals to include coordinates key
-              const transformedLocals = data.map((local) => ({
-                ...local,
-                coordinates: [local.longitude, local.latitude],
-              }));
-      
-              // Push each transformed local into locations
-              locations.push(...transformedLocals);
-              
-              console.log("Locations: ", locations);
-            
-              
-              // Update locals state
-              setLocals(transformedLocals); 
-            } else {
-              console.error("Unexpected data structure: ", data);
-              setError("Invalid data format.");
-            }
-          } catch (err) {
-            console.error("Error fetching locals:", err);
-            setError("Error loading locations.");
-          } finally {
-            setLoading(false);
-          }
-        };
-      
-        fetchLocals();
-      }, []); 
-      
+		const fetchLocals = async () => {
+			setLoading(true);
+			try {
+				const data = await LocalService.getAllLocals();
+				if (Array.isArray(data)) {
+					console.log("Locals fetched successfully: ", data);
+
+					// Transform locals to include coordinates key
+					const transformedLocals = data.map((local) => ({
+						...local,
+						coordinates: [local.longitude, local.latitude],
+					}));
+
+					// Push each transformed local into locations
+					locations.push(...transformedLocals);
+
+					console.log("Locations: ", locations);
+
+					// Update locals state
+					setLocals(transformedLocals);
+				} else {
+					console.error("Unexpected data structure: ", data);
+					setError("Invalid data format.");
+				}
+			} catch (err) {
+				console.error("Error fetching locals:", err);
+				setError("Error loading locations.");
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchLocals();
+	}, []);
 
 	useEffect(() => {
 		const map = new mapboxgl.Map({
@@ -430,4 +428,3 @@ const Mapbox = ({ pets }) => {
 };
 
 export default Mapbox;
-

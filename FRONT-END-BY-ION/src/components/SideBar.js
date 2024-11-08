@@ -28,10 +28,7 @@ const Sidebar = ({ isOpen }) => {
 					<div className="iconUserProfileContainer" key={index} onClick={() => goToPetProfile(pet._id)}>
 						<div className="ImageBoxSidebar">
 							<img src={pet.image} className="pet-image" />
-							<div>
-								<div className="textInSideBarName">{pet.petName}</div>
-								<div className="textInSideBarBreed">{pet.breed}</div>
-							</div>
+							<div className="textInSideBarName">{pet.petName}</div>
 						</div>
 						<div className="textInSideBar">{pet.petName}</div>
 					</div>
@@ -41,6 +38,7 @@ const Sidebar = ({ isOpen }) => {
 				<div className="iconUserProfileContainer" onClick={goToCreateProfile}>
 					<div className="ImageBoxSidebar">
 						<img src="/images/AddButonSideBar.png" />
+                        <div className="textInSideBarName">Add Pet</div>
 					</div>
 					<div className="textInSideBar">Add Pet</div>
 				</div>
