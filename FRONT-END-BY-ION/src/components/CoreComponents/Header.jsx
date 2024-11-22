@@ -1,15 +1,16 @@
 import Logo from "./Logo";
-import NotificationIcon from "./NotificationIcon";
-import styles from "../styles/Header.module.css"; // Import corect cu styles
+import NotificationIcon from "./HeaderComponents/NotificationIcon";
+import styles from "../../styles/Header.module.css"; // Import corect cu styles
 import { FaSignOutAlt, FaCog } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { CgMenu } from "react-icons/cg";
-import SettingsModal from "./SettingsModal";
-import "../styles/SettingsModal.css"; // Make sure the relative path is correct
+import SettingsModal from "./HeaderComponents/SettingsModal";
+import "../../styles/SettingsModal.css"; // Make sure the relative path is correct
 import { BsFillSendPlusFill } from "react-icons/bs";
-import NotificationPopup from "../Admin_PetServices/ServicesComponets/NotificationPopup";
+import NotificationPopup from "./HeaderComponents/NotificationPopup";
 import { FaRegHeart } from "react-icons/fa6";
+import MatchPopup from "./HeaderComponents/MatchPopup";
 
 const AskIfUserWantsToLogOut = ({ onDelete, onCancel }) => {
 	return (
@@ -37,6 +38,7 @@ function Header({ setIsOpen, isOpen, showMatch }) {
 	const [showSettingsModal, setShowSettingsModal] = useState(false); // State for settings modal
 	const [showNotification, setShowNotification] = useState(false); // New state for notifications
 	const [isPopupOpen, setPopupOpen] = useState(false);
+	const [showNotificationsAndMatches, setShowNotificationsAndMatches] = useState(0);
 
 	// Toggle the popup open/close state
 	const togglePopup = () => {
@@ -89,31 +91,30 @@ function Header({ setIsOpen, isOpen, showMatch }) {
 			<button className="toggle-btn" onClick={toggleSidebar}>
 				<CgMenu size={28} />
 			</button>
-			<div onClick={NavigateHome} style={{cursor: 'pointer'}}>
+			<div onClick={NavigateHome} style={{ cursor: "pointer" }}>
 				<Logo width="192px" />
 			</div>
 			<div className={styles.HeaderPets}>
 				<img src={process.env.PUBLIC_URL + "/images/HeaderPets.png"} alt="Pets" />
 			</div>
 			<div className={styles.HeaderButtons}>
-				{showMatch ? <FaRegHeart size={21} /> : <BsFillSendPlusFill size={21} onClick={togglePopup} />}
+				{showMatch ? <MatchPopup showNotificationsAndMatches={showNotificationsAndMatches} setShowNotificationsAndMatches={setShowNotificationsAndMatches} /> : <BsFillSendPlusFill size={21} onClick={togglePopup} />}
 
-				<NotificationIcon />
-				<FaCog
-					size={21}
-					onClick={handleSettingsClick} // Apelează funcția care afișează modalul
-				/>
+                <NotificationIcon 
+                    showNotificationsAndMatches={showNotificationsAndMatches} 
+                    setShowNotificationsAndMatches={setShowNotificationsAndMatches} 
+                />
+
+				<SettingsModal
+					showNotificationsAndMatches={showNotificationsAndMatches} 
+                    setShowNotificationsAndMatches={setShowNotificationsAndMatches} 
+                />
+				
 				<FaSignOutAlt size={21} title="Logout" onClick={() => setShowModal(true)} />
 			</div>
 			{/* pentru cortina sura care aparare cand apesi pe log out */}
 			{showModal && <AskIfUserWantsToLogOut onDelete={handleLogout} onCancel={handleCancel} />}
 			{/* Afișare modal Setări */}
-			{showSettingsModal && (
-				<SettingsModal
-					isOpen={showSettingsModal}
-					onClose={() => setShowSettingsModal(false)} // Închide modalul
-				/>
-			)}
 			<NotificationPopup isOpen={isPopupOpen} onClose={togglePopup} />
 		</header>
 	);

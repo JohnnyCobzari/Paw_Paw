@@ -30,15 +30,66 @@
 }
 
 .notification-popup {
-	background-color: white;
+	background-color: #FBF8EF;
 	border: 1px solid #ccc;
 	border-radius: 8px;
-	padding: 10px;
+	padding: 15px 20px;
 	position: absolute;
-	right: 0;
-	top: 40px;
+	right: -3px;
+	top: 44px;
 	width: 300px;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
+    /* Animație */
+	opacity: 0; /* Inițial transparent */
+	transform: translateY(-10px); /* Puțin ridicat la început */
+	animation: fadeIn 0.5s ease-out forwards; /* Apare lin */
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		transform: translateY(-10px);
+		border-color: rgba(204, 204, 204, 0); /* Fără culoare de contur */
+	}
+	50% {
+		opacity: 0.5;
+		transform: translateY(-5px);
+		border-color: rgba(204, 204, 204, 0.5); /* Contur parțial */
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+		border-color: #ccc; /* Culoarea finală de contur */
+	}
+}
+
+/* Colțul de mesaj */
+.notification-popup::before {
+	content: "";
+	position: absolute;
+	top: -13px; /* Poziționează triunghiul deasupra popup-ului */
+	right: 3px; /* Ajustează poziția pe orizontală */
+	width: 0;
+	height: 0;
+	border-left: 15px solid transparent; /* Triunghi stânga transparent */
+	border-right: 15px solid transparent; /* Triunghi dreapta transparent */
+	border-bottom: 15px solid #FBF8EF; /* Triunghi jos alb (culoarea popup-ului) */
+	z-index: 999; /* Să fie deasupra altor elemente */
+}
+
+/* Dacă vrei să adaugi o margine colțișorului */
+.notification-popup::after {
+	content: "";
+	position: absolute;
+	top: -14px; /* Ușor deasupra triunghiului alb */
+	right: 3px; /* Ajustează să fie aliniat cu triunghiul alb */
+	width: 0;
+	height: 0;
+	border-left: 15px solid transparent; /* Triunghi stânga transparent */
+	border-right: 15px solid transparent; /* Triunghi dreapta transparent */
+	border-bottom: 15px solid #ccc; /* Triunghi jos gri (culoarea marginii popup-ului) */
+	z-index: 998; /* Sub triunghiul alb */
 }
 
 .notification-item {
@@ -47,6 +98,10 @@
 	align-items: center;
 	padding: 8px 0;
 	border-bottom: 1px solid #eee;
+}
+
+.notification-item:hover {
+    background-color: #f9f9f9; /* Opțional: schimbă culoarea de fundal la hover */
 }
 
 .notification-item:last-child {
@@ -59,10 +114,6 @@
 	margin-left: 10px;
 }
 
-.notification-icon {
-    color: var(--lowColor);
-	cursor: pointer;
-}
 
 .notification-popup ul {
 	list-style-type: none;

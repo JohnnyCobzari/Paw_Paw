@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../components/SideBar";
-import Footer from "../components/Footer";
-import Logo from "../components/Logo";
-import MapBox from "../components/MapBox";
+import Sidebar from "../components/CoreComponents/SideBar";
+import Footer from "../components/CoreComponents/Footer";
+import Logo from "../components/CoreComponents/Logo";
+import MapBox from "../components/MapBoxStuff/MapBox";
 import "../styles/HomePage.css";
 import axios from "axios";
 import Loading from "../components/LoadingAnimation";
-import ErrorPage from "../components/ErrorPage";
+import ErrorPage from "./ErrorPage";
 import "../styles/NotificationIcon.css";
-import NotificationIcon from "../components/NotificationIcon";
-import Header from "../components/Header";
+import NotificationIcon from "../components/CoreComponents/HeaderComponents/NotificationIcon";
+import Header from "../components/CoreComponents/Header";
 import "../styles/SettingsModal.css";
 
 const MainPage = () => {

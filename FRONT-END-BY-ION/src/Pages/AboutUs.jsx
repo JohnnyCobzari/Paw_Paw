@@ -1,9 +1,8 @@
 import React from "react";
-import "./AboutUs.css";
-import Logo from "../components/Logo";
-import Footer from "../components/Footer";
+import "../styles/AboutUs.css";
+import Logo from "../components/CoreComponents/Logo";
+import Footer from "../components/CoreComponents/Footer";
 import { useNavigate } from "react-router-dom";
-
 
 const AboutUs = () => {
 	const navigate = useNavigate();

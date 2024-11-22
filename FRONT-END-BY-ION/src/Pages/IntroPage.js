@@ -1,6 +1,6 @@
 import React, { useEffect} from "react";
 import "../styles/IntroPage.css";
-import Footer from "../components/Footer";
+import Footer from "../components/CoreComponents/Footer";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 

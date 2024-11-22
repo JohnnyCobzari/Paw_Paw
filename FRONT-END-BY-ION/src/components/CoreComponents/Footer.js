@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Footer.css"; // Asigură-te că ai un fișier CSS corespunzător pentru stiluri
+import "../../styles/Footer.css"; // Asigură-te că ai un fișier CSS corespunzător pentru stiluri
 
 function Footer() {
   return (

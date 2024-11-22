@@ -1,54 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { FaRegUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
 const SidebarLocals = ({ isOpen, isOpenForm, setIsOpenForm }) => {
 	const navigate = useNavigate();
 
-	const [locals, setLocals]= useState([]);
-
+	const [locals, setLocals] = useState([]);
 
 	useEffect(() => {
-		
-
 		const userId = localStorage.getItem("userId");
 
-		
-			const response = axios.get(`http://localhost:3002/local/users-local/${userId}`, {
+		const response = axios
+			.get(`http://localhost:3002/local/users-local/${userId}`, {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem("authToken")}`,
 					"Content-Type": "application/json",
 				},
 			})
-			.then(response => {
-                setLocals(response.data);
-                console.log('debug1')
+			.then((response) => {
+				setLocals(response.data);
 				console.log(response.data);
-                localStorage.setItem("locals", JSON.stringify(response.data));
-            })
-            .catch(error => console.error('Error fetching notifications:', error));;
-
-		
+				localStorage.setItem("locals", JSON.stringify(response.data));
+			})
+			.catch((error) => console.error("Error fetching notifications:", error));
 	}, []);
 
 	const goToLocalProfile = (id) => {
 		navigate(`/LocalProfile/${id}`);
 	};
 
-    const toggleForm = () => {
-        setIsOpenForm(!isOpenForm);
-    };
+	const toggleForm = () => {
+		setIsOpenForm(!isOpenForm);
+	};
 
 	return (
 		<div className={isOpen ? "sidebar expanded" : "sidebar"}>
 			<div className="sidebar-content">
 				{locals.map((local) => (
-					<div
-						className="iconUserProfileContainer"
-						key={local._id}
-						onClick={() => goToLocalProfile(local._id)}
-					>
+					<div className="iconUserProfileContainer" key={local._id} onClick={() => goToLocalProfile(local._id)}>
 						<div className="ImageBoxSidebar">
 							<img src={local.images[0]} alt={local.localName} className="local-image" />
 							<div>

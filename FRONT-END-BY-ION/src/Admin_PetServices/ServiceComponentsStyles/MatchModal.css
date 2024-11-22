@@ -1,0 +1,152 @@
+.MatchHeartDivModal {
+	cursor: pointer;
+	position: absolute;
+	top: 10px;
+	left: 5%;
+	color: #6b5e49;
+	font-size: 10px;
+	border: 1px solid #ff319b;
+	border-radius: 50%;
+	width: 70px;
+	height: 70px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+	z-index: 2; /* Keeps button above the curtain */
+    background-color: white;
+}
+
+.MatchHeartDivModal:hover {
+	box-shadow: 0px 4px 10px rgba(255, 49, 155, 0.5);
+	transform: scale(1.05);
+}
+
+.MatchHeartModal {
+	color: #ff319b;
+	font-size: 30px;
+}
+
+/* Curtain styles */
+.curtainModal {
+	position: absolute;
+	top: 40px; /* Adjusted based on button height */
+	left: 5%;
+	width: 70px;
+	max-height: 0px;
+	overflow: hidden;
+	background: #f9f9f9;
+	transition: max-height 0.5s ease;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	z-index: 1; /* Below button */
+}
+
+/* When the curtain is open */
+.curtainModal.openModal {
+	max-height: 500px; /* Adjust this as needed */
+    background-color:rgb(255, 233, 246);
+	box-shadow: 1px 1px 5px rgb(255, 109, 206);
+    border-radius: 20px;
+     
+}
+
+/* Style for each pet thumbnail */
+.pet-thumbnailDiv:first-child{
+    margin-top: 50px;
+}
+
+.pet-thumbnailDiv{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+
+.pet-thumbnail {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    transition: transform 0.2s ease;
+}
+
+.pet-thumbnail:hover {
+    transform: scale(1.1);
+    border-color: #ff5bb0;
+}
+
+.MatchHeartDivModalParagraf{
+    margin-top: 10px;
+    font-size: 10px;
+    color: #ff5bb0;
+}
+
+@media (max-width: 480px){
+    .MatchHeartDivModal{
+        left: 0;
+    }
+
+    .curtainModal.openModal{
+        left: 0;
+    }
+    .curtainModal{
+        left: 0;
+    }
+}
+/*------------ alt ceva Care apare cand dai match------------------*/
+
+
+.fullScreenMessage {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 207, 237, 0.8); /* Semi-transparent black */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000; /* Ensure it's above other elements */
+}
+
+.messageContent {
+	background: #fff;
+	padding: 20px 40px;
+	border-radius: 10px;
+	text-align: center;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.messageContent h1 {
+	margin-bottom: 10px;
+	color: #ff5bb0;
+}
+
+.messageContent p {
+	margin-bottom: 20px;
+	font-size: 16px;
+	color: #777;
+}
+
+.continueButton {
+	background-color:#ff319b;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.continueButton:hover {
+	background-color: #ff0084;
+}

@@ -1,5 +1,5 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../components/CoreComponents/Header";
+import Footer from "../components/CoreComponents/Footer";
 import "../Admin_PetServices/ServiceComponentsStyles/LocalProfile.css";
 import ImageCarousel from "./ServicesComponets/ImageCarusel";
 import StarRating from "./ServicesComponets/StarRating";

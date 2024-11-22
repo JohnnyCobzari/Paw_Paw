@@ -33,6 +33,18 @@ const MultipleImageUpload = ({ onImagesUpload }) => {
     }
   };
 
+  // Funcție pentru a șterge o imagine
+  const handleRemoveImage = (indexToRemove) => {
+    const updatedImages = selectedImages.filter((_, index) => index !== indexToRemove);
+    const updatedFileNames = fileNames.filter((_, index) => index !== indexToRemove);
+
+    setSelectedImages(updatedImages);
+    setFileNames(updatedFileNames);
+
+    // Trimitem array-ul actualizat în callback
+    onImagesUpload(updatedImages);
+  };
+
   const containerStyle = {
     display: 'flex',
     alignItems: 'center', // Centrarea pe verticală
@@ -71,6 +83,37 @@ const MultipleImageUpload = ({ onImagesUpload }) => {
     color: '#6b5e49', // Culoare personalizată pentru h3
   };
 
+  const imageWrapperStyle = {
+    position: 'relative',
+    display: 'inline-block',
+    marginRight: '10px',
+    marginBottom: '10px',
+  };
+
+  const removeButtonStyle = {
+    position: 'absolute',
+    top: '5px',
+    right: '5px',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '50%',
+    width: '20px',
+    height: '20px',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '12px',
+  };
+
+  const imageStyle = {
+    maxWidth: '100px',
+    maxHeight: '100px',
+    objectFit: 'cover',
+    borderRadius: '4px',
+  };
+
   return (
     <div>
       <div style={containerStyle}>
@@ -98,7 +141,15 @@ const MultipleImageUpload = ({ onImagesUpload }) => {
           <h3 style={h3Style}>Selected Images:</h3>
           <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             {selectedImages.map((image, index) => (
-              <img key={index} src={image} alt={`Uploaded ${index}`} style={{ maxWidth: '100px', maxHeight: '100px', objectFit: 'cover', marginRight: '10px', marginBottom: '10px' }} />
+              <div key={index} style={imageWrapperStyle}>
+                <img src={image} alt={`Uploaded ${index}`} style={imageStyle} />
+                <button
+                  style={removeButtonStyle}
+                  onClick={() => handleRemoveImage(index)}
+                >
+                  X
+                </button>
+              </div>
             ))}
           </div>
         </div>

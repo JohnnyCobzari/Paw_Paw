@@ -2,26 +2,26 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import mapboxgl from "mapbox-gl";
 import FilterSidebar from "./FilterSideBar";
-import LocalService from "./LocalService";
+import LocalService from "../../Admin_PetServices/ServicesComponets/LocalService";
 
 mapboxgl.accessToken = "pk.eyJ1Ijoiam9ueWlka2siLCJhIjoiY20wbWZqM3ZsMDF0MzJzc2JoN2pmMGpxeSJ9.YsuGCrjUvQVDNqMM-n14bg";
 
 const locations = [
-	{ name: 'Vet Clinic "Nicoleta Lux"', type: "Veterinarian", coordinates: [28.848006560444432, 47.04577197844606] },
-	{ name: 'Vet Pharmacy "Nicoleta Lux"', type: "Veterinarian", coordinates: [28.830326863280124, 47.01747724213654] },
-	{ name: "Vet Pharmacy", type: "Veterinarian", coordinates: [28.780102397299974, 47.02954706729542] },
-	{ name: "Pet Shop", type: "Pet Shop", coordinates: [28.778997346183186, 47.03111022566327] },
-	{ name: "Zoo", type: "Pet Shop", coordinates: [28.85911096985874, 47.04426874781966] },
-	{ name: "Planeta ZOO K9", type: "Pet Shop", coordinates: [28.86271048994743, 47.04983646460499] },
-	{ name: "Murchik Pet Market", type: "Pet Shop", coordinates: [28.871974656825888, 47.054171748406304] },
-	{ name: "Murchik Pet Market Jumbo", type: "Pet Shop", coordinates: [28.86079709252045, 47.00450679140682] },
-	{ name: "Pet House", type: "Grooming", coordinates: [28.838577593682864, 47.03047993151489] },
-	{ name: "Hotel Radisson Blu Leogrand", type: "Pet Hotel", coordinates: [28.836521554962687, 47.02395865725578] },
-	{ name: "City Park Hotel", type: "Pet Hotel", coordinates: [28.836544124869, 47.02727347196137] },
-	{ name: "Hotel Diplomat Club", type: "Pet Hotel", coordinates: [28.822975670083377, 47.01240999881395] },
-	{ name: "Shadow Hotel", type: "Pet Hotel", coordinates: [28.850135932529522, 47.03524991313651] },
-	{ name: "Farmacie Veterinara Proneros", type: "Veterinarian", coordinates: [28.619373, 47.153004] },
-	{ name: "Farmacie Veterinara", type: "Veterinarian", coordinates: [28.617119276009248, 47.14834894044488] },
+	// { name: 'Vet Clinic "Nicoleta Lux"', type: "Veterinarian", coordinates: [28.848006560444432, 47.04577197844606] },
+	// { name: 'Vet Pharmacy "Nicoleta Lux"', type: "Veterinarian", coordinates: [28.830326863280124, 47.01747724213654] },
+	// { name: "Vet Pharmacy", type: "Veterinarian", coordinates: [28.780102397299974, 47.02954706729542] },
+	// { name: "Pet Shop", type: "Pet Shop", coordinates: [28.778997346183186, 47.03111022566327] },
+	// { name: "Zoo", type: "Pet Shop", coordinates: [28.85911096985874, 47.04426874781966] },
+	// { name: "Planeta ZOO K9", type: "Pet Shop", coordinates: [28.86271048994743, 47.04983646460499] },
+	// { name: "Murchik Pet Market", type: "Pet Shop", coordinates: [28.871974656825888, 47.054171748406304] },
+	// { name: "Murchik Pet Market Jumbo", type: "Pet Shop", coordinates: [28.86079709252045, 47.00450679140682] },
+	// { name: "Pet House", type: "Grooming", coordinates: [28.838577593682864, 47.03047993151489] },
+	// { name: "Hotel Radisson Blu Leogrand", type: "Pet Hotel", coordinates: [28.836521554962687, 47.02395865725578] },
+	// { name: "City Park Hotel", type: "Pet Hotel", coordinates: [28.836544124869, 47.02727347196137] },
+	// { name: "Hotel Diplomat Club", type: "Pet Hotel", coordinates: [28.822975670083377, 47.01240999881395] },
+	// { name: "Shadow Hotel", type: "Pet Hotel", coordinates: [28.850135932529522, 47.03524991313651] },
+	// { name: "Farmacie Veterinara Proneros", type: "Veterinarian", coordinates: [28.619373, 47.153004] },
+	// { name: "Farmacie Veterinara", type: "Veterinarian", coordinates: [28.617119276009248, 47.14834894044488] },
 ];
 
 const Mapbox = ({ pets }) => {
@@ -73,7 +73,7 @@ const Mapbox = ({ pets }) => {
 			case "Pet Hotel":
 				el.style.backgroundImage = "url(/icons/hotel.png)";
 				break;
-			case "Pet Grooming":
+			case "Grooming":
 				el.style.backgroundImage = "url(/icons/grooming.png)";
 				break;
 			default:
@@ -138,7 +138,7 @@ const Mapbox = ({ pets }) => {
 					// Push each transformed local into locations
 					locations.push(...transformedLocals);
 
-					console.log("Locations: ", locations);
+					console.log("-----------------Locations: ", locations);
 
 					// Update locals state
 					setLocals(transformedLocals);
@@ -349,7 +349,7 @@ const Mapbox = ({ pets }) => {
 			//console.log(isClicked);
 			if (isClicked) {
 				locations.forEach((location) => {
-					const markerElement = createCustomMarker(location.type);
+					const markerElement = createCustomMarker(location.localType);
 					markerElement.className = "marker-icon";
 
 					// Aplicăm noua dimensiune la marker
@@ -358,8 +358,12 @@ const Mapbox = ({ pets }) => {
 
 					const marker = new mapboxgl.Marker({ element: markerElement })
 						.setLngLat(location.coordinates)
-						.setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(`<h3>${location.name}</h3><p>${location.type}</p>`))
+						.setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(`<h3>${location.localName}</h3><p>${location.localType}</p>`))
 						.addTo(map);
+
+					markerElement.addEventListener("click", () => {
+						navigate(`/LocalProfile/${location._id}`);
+					});
 
 					markersRef.current.push(marker);
 				});
@@ -401,9 +405,9 @@ const Mapbox = ({ pets }) => {
 				<FilterSidebar applyFilters={applyFilters} />
 
 				<button id="ChangeMapContentButton" onClick={handleClick}>
-					{!isClicked && <img src="./images/PetIconChangeButon.png"></img>}
-					{isClicked && <img src="./images/ServiceButtonChangeButton.png"></img>}
-					{isClicked ? "Show Locals" : "Show Pets"}
+					{isClicked && <img src="./images/PetIconChangeButon.png"></img>}
+					{!isClicked && <img src="./images/ServiceButtonChangeButton.png"></img>}
+					{!isClicked ? "Show Locals" : "Show Pets"}
 				</button>
 
 				{hoveredPet && (

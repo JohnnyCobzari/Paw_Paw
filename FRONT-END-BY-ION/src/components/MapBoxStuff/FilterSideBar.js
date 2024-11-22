@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FiFilter, FiX, FiChevronDown } from "react-icons/fi";
-import "../styles/FilterSideBar.css";
+import "../../styles/FilterSideBar.css";
 import { FaSearch } from "react-icons/fa";
 
 const FilterSidebar = ({ applyFilters }) => {

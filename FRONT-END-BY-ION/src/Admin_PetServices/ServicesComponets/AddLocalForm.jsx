@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../ServiceComponentsStyles/AddLocalForm.css";
 import { FiX } from "react-icons/fi";
 import ImageUpload from "../../components/DragAndDrop";
-import GeolocationComponent from "../../components/Geolocation";
+import GeolocationComponent from "../../components/MapBoxStuff/Geolocation";
 import MultipleImageUpload from "./MultipleFileUpload";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";

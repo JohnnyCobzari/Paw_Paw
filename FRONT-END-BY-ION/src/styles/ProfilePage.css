@@ -16,10 +16,11 @@
 }
 
 .Profile-ImageContainer {
+    position: relative;
 	text-align: center;
 }
 
-.Profile-ImageContainer img {
+.Profile-ImageContainerImg{
 	width: 160px;
 	height: 160px;
 	object-fit: cover;

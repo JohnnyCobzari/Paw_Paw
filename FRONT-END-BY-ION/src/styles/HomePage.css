@@ -68,7 +68,6 @@ input:focus {
 
 .notification-icon {
 	cursor: pointer;
-	color: #007bff; /* Schimbă culoarea iconiței după preferințe */
 }
 
 .notification-popup {
@@ -111,6 +110,7 @@ input:focus {
 	cursor: pointer;
 	width: 32px;
 	height: auto;
+    transform: translateY(-45px);
 }
 
 .AddLocalHover {
@@ -131,11 +131,13 @@ input:focus {
 	color: white;
 	padding: 2px 10px;
 	border-radius: 6px;
+    transform: translateY(-45px);
 }
 
 .AddLocalHover:hover .tooltip {
-	transform: translateY(1px) translateX(-124%); /* Textul se mișcă spre stânga la hover */
+	transform: translateY(-45px) translateX(-124%); /* Textul se mișcă spre stânga la hover */
 	opacity: 1; /* Textul devine vizibil la hover */
+    
 }
 
 /* <====================for the service button to add locals*/
@@ -166,4 +168,18 @@ input:focus {
 #ChangeMapContentButton img {
 	width: 18px;
 	height: auto;
+}
+
+@media (max-width: 480px){
+    .addLocalButton img{
+        transform: translateY(-45px) translateX(-45px);
+    }
+
+    .tooltip{
+        transform: translateY(-45px) translateX(-45px);
+    }
+
+    .AddLocalHover:hover .tooltip {
+        transform: translateY(-45px) translateX(-160%);
+    }
 }

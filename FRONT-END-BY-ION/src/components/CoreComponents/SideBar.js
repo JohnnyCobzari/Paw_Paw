@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaRegUser } from "react-icons/fa";
-import "../styles/SideBar.css"; // Import the separate CSS file
+import "../../styles/SideBar.css"; // Import the separate CSS file
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ isOpen }) => {

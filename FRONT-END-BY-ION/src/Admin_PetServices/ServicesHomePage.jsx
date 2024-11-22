@@ -1,31 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SidebarLocals from "./ServicesComponets/sideBarLocals";
-import Footer from "../components/Footer";
-import Logo from "../components/Logo";
-import MapBox from "../components/MapBox";
+import Footer from "../components/CoreComponents/Footer";
+import Logo from "../components/CoreComponents/Logo";
+import MapBox from "../components/MapBoxStuff/MapBox";
 import "../styles/HomePage.css";
 import axios from "axios";
 import Loading from "../components/LoadingAnimation";
-import ErrorPage from "../components/ErrorPage";
+import ErrorPage from "../Pages/ErrorPage";
 import "../styles/NotificationIcon.css";
-import NotificationIcon from "../components/NotificationIcon";
-import Header from "../components/Header";
+import NotificationIcon from "../components/CoreComponents/HeaderComponents/NotificationIcon";
+import Header from "../components/CoreComponents/Header";
 import AddLocalForm from "./ServicesComponets/AddLocalForm";
-
 
 const ServiceHomePage = () => {
 	const [isOpen, setIsOpen] = useState(false);
-    const [isOpenForm, setIsOpenForm] = useState(false);
+	const [isOpenForm, setIsOpenForm] = useState(false);
 	const [allPets, setAllPets] = useState([]);
 	const [userPets, setUserPets] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState("");
 	const navigate = useNavigate();
 
-    const toggleForm = () => {
-        setIsOpenForm(!isOpenForm);
-    };
+	const toggleForm = () => {
+		setIsOpenForm(!isOpenForm);
+	};
 
 	useEffect(() => {
 		const fetchPets = async () => {
@@ -37,7 +36,7 @@ const ServiceHomePage = () => {
 				const response = await axios.get("http://localhost:3002/pets", {
 					headers: {
 						Authorization: `Bearer ${token}`,
-					}
+					},
 				});
 
 				// Filter pets that have valid coordinates (latitude and longitude)
@@ -73,7 +72,7 @@ const ServiceHomePage = () => {
 					<span className="tooltip">Add your local</span>
 				</div>
 			</div>
-            <AddLocalForm isOpen={isOpenForm} setIsOpen={setIsOpenForm}/>
+			<AddLocalForm isOpen={isOpenForm} setIsOpen={setIsOpenForm} />
 			<Footer />
 		</>
 	);

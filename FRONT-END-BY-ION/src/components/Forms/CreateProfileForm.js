@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import ImageUpload from "./DragAndDrop";
-import "../styles/LogInPage.css";
+import ImageUpload from "../DragAndDrop";
+import "../../styles/LogInPage.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import myString from "./DefaultImage";
-import SearchLogic from "./Recomandations/Dogs";
+import myString from "../DefaultImage";
+import SearchLogic from "../Recomandations/Dogs";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css"; // Import default styles
-import GeolocationComponent from "./Geolocation"; // Import the geolocation logic
+import GeolocationComponent from "../MapBoxStuff/Geolocation";// Import the geolocation logic
 import VaccinationForm from "./VaccinationForm";
 
 const PetForm = () => {

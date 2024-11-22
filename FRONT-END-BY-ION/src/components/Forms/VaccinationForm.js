@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/VaccinationForm.css";
+import "../../styles/VaccinationForm.css";
 import { FaTrash } from "react-icons/fa";
 
 function VaccinationForm({ setVaccines, vaccines }) {

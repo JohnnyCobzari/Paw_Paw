@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { IoMdNotifications } from "react-icons/io";
 import { FaTimes } from "react-icons/fa";
 import axios from "axios";
-import "../styles/NotificationIcon.css"; // Styles
+import "../../../styles/NotificationIcon.css"; // Styles
 
 // Utility functions to get token and user ID from localStorage
 const getToken = () => localStorage.getItem('authToken');
 const getUserId = () => localStorage.getItem('userId');
 
-const NotificationIcon = () => {
+const NotificationIcon = ({showNotificationsAndMatches, setShowNotificationsAndMatches}) => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [notifications, setNotifications] = useState([]);
 
@@ -17,7 +17,7 @@ const NotificationIcon = () => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/notifications`, {
+        const response = await axios.get(`http://localhost:3002/notifications`, {
           params: { userId: getUserId() },
           headers: {
             Authorization: `Bearer ${getToken()}`,
@@ -103,7 +103,12 @@ const NotificationIcon = () => {
       <div
         className="icon-wrapper"
         onClick={() => {
-          setShowNotifications(!showNotifications);
+            if (showNotificationsAndMatches == 2 || showNotificationsAndMatches == 0 || showNotificationsAndMatches == 3){
+                setShowNotificationsAndMatches(1);
+            }
+            else{
+                setShowNotificationsAndMatches(0);
+            }
           markAllAsRead();
         }}
       >
@@ -113,7 +118,8 @@ const NotificationIcon = () => {
         {unreadCount > 0 && <span className="notification-count">{unreadCount}</span>}
       </div>
 
-      {showNotifications && (
+      {showNotificationsAndMatches == 1 && (
+//-------------------------------------------------------------
         <div className="notification-popup">
           <h4>Notifications</h4>
           {notifications.length > 0 ? (
@@ -135,6 +141,7 @@ const NotificationIcon = () => {
             <p>No notifications</p>
           )}
         </div>
+//-------------------------------------------------------------
       )}
     </div>
   );

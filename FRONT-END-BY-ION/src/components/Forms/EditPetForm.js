@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ImageUpload from './DragAndDrop';
-import "../styles/LogInPage.css";
+import ImageUpload from '../DragAndDrop';
+import "../../styles/LogInPage.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import PhoneInput from "react-phone-number-input";
